@@ -47,15 +47,9 @@ class ViewController: UIViewController {
             tabBarItem3 = BATabBarItem(image: UIImage(named: "icon3_unselected")!, selectedImage: UIImage(named: "icon3_selected")!, title: option1)
 
         case .BATabBarNoText:
-            let img = UIImage(named: "icon2_unselected")?.withRenderingMode(.alwaysTemplate)
-            //F75B5B
-            
-            
             tabBarItem  = BATabBarItem(image: UIImage(named: "icon1_unselected")!, selectedColor: .white)
-            tabBarItem2 = BATabBarItem(image: img!, selectedColor: .white)
+            tabBarItem2 = BATabBarItem(image: UIImage(named: "icon2_unselected")!, selectedColor: .white)
             tabBarItem3 = BATabBarItem(image: UIImage(named: "icon3_unselected")!, selectedColor: .white)
-            
-            tabBarItem.unselectedImageView?.tintColor = UIColor(named: "spred")
         }
         
         emptyTab = BATabBarItem.empty()
@@ -75,25 +69,6 @@ class ViewController: UIViewController {
         testController.delegate = self
         testController.viewControllers = [vc1, vc1, vc2, vc3, vc3]
         testController.tabBarItems = [emptyTab, tabBarItem, tabBarItem2, tabBarItem3, emptyTab]
-        
-        
-        
-        //OPTIONAL SETTINGS
-        
-        //initial view controller
-//        testController.initialViewController = vc2
-        
-        //tab bar background color example
-        //testController.tabBarBackgroundColor = .black
-        
-        //tab bar item stroke color example
-//        testController.tabBarItemStrokeColor = .blue
-        
-        //Tab bar line width example
-        //testController.tabBarItemLineWidth = 9.0
-        
-        //Hides the tab bar when true
-        //testController.hidesBottomBarWhenPushed = true
         
         self.view.addSubview(testController.view)
     }

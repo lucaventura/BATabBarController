@@ -24,7 +24,7 @@ import Foundation
 
 public class BATabBarItem: UIButton {
     
-    /// Get's an empty `BATabBarItem`
+    /// Gets an empty `BATabBarItem`
     public static func empty() -> BATabBarItem {
         let tab = BATabBarItem()
         tab.selectedImageView?.isUserInteractionEnabled = false
