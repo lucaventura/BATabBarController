@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         let testController = BATabBarController()
-        var tabBarItem, tabBarItem2, tabBarItem3: BATabBarItem
+        var emptyTab, tabBarItem, tabBarItem2, tabBarItem3: BATabBarItem
         
         switch (self.demotype) {
         case .BATabBarWithText:
@@ -47,14 +47,22 @@ class ViewController: UIViewController {
             tabBarItem3 = BATabBarItem(image: UIImage(named: "icon3_unselected")!, selectedImage: UIImage(named: "icon3_selected")!, title: option1)
 
         case .BATabBarNoText:
-            tabBarItem  = BATabBarItem(image: UIImage(named: "icon1_unselected")!, selectedImage: UIImage(named: "icon1_selected")!)
-            tabBarItem2 = BATabBarItem(image: UIImage(named: "icon2_unselected")!, selectedImage: UIImage(named: "icon2_selected")!)
-            tabBarItem3 = BATabBarItem(image: UIImage(named: "icon3_unselected")!, selectedImage: UIImage(named: "icon3_selected")!)
+            let img = UIImage(named: "icon2_unselected")?.withRenderingMode(.alwaysTemplate)
+            //F75B5B
+            
+            
+            tabBarItem  = BATabBarItem(image: UIImage(named: "icon1_unselected")!, selectedColor: .white)
+            tabBarItem2 = BATabBarItem(image: img!, selectedColor: .white)
+            tabBarItem3 = BATabBarItem(image: UIImage(named: "icon3_unselected")!, selectedColor: .white)
+            
+            tabBarItem.unselectedImageView?.tintColor = UIColor(named: "spred")
         }
         
+        emptyTab = BATabBarItem.empty()
+        emptyTab.isUserInteractionEnabled = false
 
-        let badge = BATabBarBadge(value:20, badgeColor: .red)
-        tabBarItem2.badge = badge
+//        let badge = BATabBarBadge(value:20, badgeColor: .red)
+//        tabBarItem2.badge = badge
 
 
         let vc1 = UIViewController()
@@ -65,8 +73,9 @@ class ViewController: UIViewController {
         vc3.view.backgroundColor = .blue
         
         testController.delegate = self
-        testController.viewControllers = [vc1, vc2, vc3]
-        testController.tabBarItems = [tabBarItem,tabBarItem2,tabBarItem3]
+        testController.viewControllers = [vc1, vc1, vc2, vc3, vc3]
+        testController.tabBarItems = [emptyTab, tabBarItem, tabBarItem2, tabBarItem3, emptyTab]
+        
         
         
         //OPTIONAL SETTINGS

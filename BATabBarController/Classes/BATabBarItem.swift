@@ -24,6 +24,15 @@ import Foundation
 
 public class BATabBarItem: UIButton {
     
+    /// Get's an empty `BATabBarItem`
+    public static func empty() -> BATabBarItem {
+        let tab = BATabBarItem()
+        tab.selectedImageView?.isUserInteractionEnabled = false
+        tab.unselectedImageView?.isUserInteractionEnabled = false
+        tab.empty = true
+        return tab
+    }
+    
     enum BATabBarItemProperties {
         static let OutlineRadiusPadding: Double = 5.0
         static let OutlinePadding: Double = 5.0
@@ -51,10 +60,12 @@ public class BATabBarItem: UIButton {
     var title: UILabel?
     
     //Image view for an unselected tab
-    var unselectedImageView: UIImageView?
+    public var unselectedImageView: UIImageView?
     
     //Image view for a selected tab
-    var selectedImageView: UIImageView?
+    public var selectedImageView: UIImageView?
+        
+    var empty: Bool = false
     
     //An optional badge to display in the top right corner
     public var badge: BATabBarBadge? {
@@ -70,6 +81,14 @@ public class BATabBarItem: UIButton {
                 setNeedsUpdateConstraints()
             }
         }
+    }
+    
+    convenience public init(image: UIImage, selectedColor: UIColor) {
+        self.init()
+        
+        customInit(unselectedImage: image, selectedImage: image.withRenderingMode(.alwaysTemplate))
+        selectedImageView?.tintColor = selectedColor
+        unselectedImageView?.tintColor = selectedColor
     }
     
     convenience public init(image: UIImage, selectedImage: UIImage) {

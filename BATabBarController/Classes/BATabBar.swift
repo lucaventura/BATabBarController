@@ -333,10 +333,11 @@ class BATabBar: UIView {
 
             animationContainer?.layer.addSublayer(animatingTabTransitionLayer)
             
-            if let delegate = delegate, let index =  tabBarItems.firstIndex(of: newItem) {
-                delegate.tabBar(self, didSelectItemAt: index)
+            if !newItem.empty {
+                if let delegate = delegate, let index = tabBarItems.firstIndex(of: newItem) {
+                    delegate.tabBar(self, didSelectItemAt: index)
+                }
             }
-
         }
     }
     

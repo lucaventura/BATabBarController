@@ -145,7 +145,13 @@ public class BATabBarController:  UIViewController {
         if (selectedViewController == nil) {
             selectedViewController = initialViewController ??  viewControllers[0]
             if let tabBar = tabBar, let selectedViewController = selectedViewController {
-                tabBar.selectedTabItem((viewControllers as NSArray).index(of: selectedViewController), animated: false)
+                var index = (viewControllers as NSArray).index(of: selectedViewController)
+                
+                if (tabBar.tabBarItems[0].empty) {
+                    index += 1
+                }
+                
+                tabBar.selectedTabItem(index, animated: false)
             }
         }
     }
