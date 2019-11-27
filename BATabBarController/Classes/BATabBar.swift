@@ -79,6 +79,12 @@ class BATabBar: UIView {
     }
     
     override func updateConstraints() {
+//        NSLayoutConstraint.activate([
+//            tabBar.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+//            tabBar.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+//            tabBar.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
+//        ])
+        
         if(!constraintsLoaded) {
             self.snp.makeConstraints { make in
                 make.height.equalTo(BATabBarProperties.TabBarHeight + Int(self.safeAreaInsets.bottom))
@@ -115,6 +121,12 @@ class BATabBar: UIView {
         }
         
         super.updateConstraints()
+    }
+    
+    override func safeAreaInsetsDidChange() {
+        self.snp.updateConstraints { make in
+            make.height.equalTo(BATabBarProperties.TabBarHeight + Int(self.safeAreaInsets.bottom))
+        }
     }
     
     override func layoutSubviews() {
