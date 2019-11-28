@@ -65,7 +65,7 @@ public class BATabBarItem: UIButton {
     //Image view for a selected tab
     public var selectedImageView: UIImageView?
         
-    var empty: Bool = false
+    public var empty: Bool = false
     
     //An optional badge to display in the top right corner
     public var badge: BATabBarBadge? {
