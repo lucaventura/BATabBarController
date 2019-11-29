@@ -57,20 +57,18 @@ class ViewController: UIViewController {
 
 //        let badge = BATabBarBadge(value:20, badgeColor: .red)
 //        tabBarItem2.badge = badge
-
-        
         
         let vc1 = UIViewController()
-        vc1.view.backgroundColor = .gray
+        vc1.view.backgroundColor = .black
         let vc2 = UIViewController()
         vc2.view.backgroundColor = .black
         let vc3 = UIViewController()
-        vc3.view.backgroundColor = .blue
+        vc3.view.backgroundColor = .black
         
         let nav = UINavigationController(rootViewController: vc1)
         
         testController.delegate = self
-        testController.viewControllers = [nav, vc2, vc3]
+        testController.viewControllers = [UIViewController(), nav, vc2, vc3, UIViewController()]
         testController.tabBarItems = [emptyTab, tabBarItem, tabBarItem2, tabBarItem3, emptyTab]
         
         self.view.addSubview(testController.view)

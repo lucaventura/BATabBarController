@@ -184,6 +184,13 @@ class BATabBar: UIView {
         //set default color
         backgroundColor = UIColor.colorWithHex(0x1C2129)
         
+        var borderColor: UIColor = UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0)
+        if #available(iOS 12.0, *) {
+            if self.traitCollection.userInterfaceStyle == .dark {
+                borderColor = UIColor(red:0.38, green:0.38, blue:0.38, alpha:1.0)
+            }
+        }
+                
         tabBarContainer = UIView()
         animationContainer = UIView()
 
@@ -201,6 +208,13 @@ class BATabBar: UIView {
 
 
         translatesAutoresizingMaskIntoConstraints = false
+        
+        // Adds 1px top border
+        let border = UIView()
+        border.backgroundColor = borderColor
+        border.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+        border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 1)
+        addSubview(border)
     }
     
     public func updateTabBarItems(_ tabBarItems: [BATabBarItem]) {
