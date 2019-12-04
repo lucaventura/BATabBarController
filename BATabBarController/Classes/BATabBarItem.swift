@@ -30,6 +30,7 @@ public class BATabBarItem: UIButton {
         tab.selectedImageView?.isUserInteractionEnabled = false
         tab.unselectedImageView?.isUserInteractionEnabled = false
         tab.empty = true
+        tab.isUserInteractionEnabled = false
         return tab
     }
     

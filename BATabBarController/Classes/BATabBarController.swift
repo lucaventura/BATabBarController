@@ -21,6 +21,7 @@
 //SOFTWARE.
 
 import UIKit
+import SnapKit
 
 public protocol BATabBarControllerDelegate: AnyObject {
     func tabBarController(_ tabBarController: BATabBarController, didSelect: UIViewController)
@@ -42,6 +43,15 @@ public class BATabBarController:  UIViewController {
                 let vc = viewControllers[i]
                 if let vcView = vc.view, let tabBar = tabBar {
                     self.view.insertSubview(vcView, belowSubview: tabBar)
+                    
+                    vcView.translatesAutoresizingMaskIntoConstraints = false
+                    let leading = NSLayoutConstraint.init(item: vcView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0)
+                    let trailing = NSLayoutConstraint.init(item: vcView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0)
+                    let top = NSLayoutConstraint.init(item: vcView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0)
+                    let bottom = NSLayoutConstraint.init(item: vcView, attribute: .bottom, relatedBy: .equal, toItem: tabBar, attribute: .top, multiplier: 1, constant: 0)
+                    
+                    self.view.addConstraints([leading, trailing, top, bottom])
+                    
                 }
                 i -= 1
             }
