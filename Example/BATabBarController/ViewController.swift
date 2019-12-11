@@ -49,6 +49,7 @@ class ViewController: UIViewController {
         case .BATabBarNoText:
             tabBarItem  = BATabBarItem(image: UIImage(named: "icon1_unselected")!, selectedColor: .white)
             tabBarItem2 = BATabBarItem(image: UIImage(named: "icon2_unselected")!, selectedColor: .white)
+            tabBarItem2.presentModally = true
             tabBarItem3 = BATabBarItem(image: UIImage(named: "icon3_unselected")!, selectedColor: .white)
         }
         
@@ -59,17 +60,17 @@ class ViewController: UIViewController {
 //        tabBarItem2.badge = badge
         
         let vc1 = UIViewController()
-        vc1.view.backgroundColor = .black
+        vc1.view.backgroundColor = .red
         let vc2 = UIViewController()
-        vc2.view.backgroundColor = .black
+        vc2.view.backgroundColor = .blue
         let vc3 = UIViewController()
-        vc3.view.backgroundColor = .black
+        vc3.view.backgroundColor = .green
         
-        let nav = UINavigationController(rootViewController: vc1)
         
         testController.delegate = self
-        testController.viewControllers = [UIViewController(), nav, vc2, vc3, UIViewController()]
+        testController.viewControllers = [UIViewController(), vc1, vc2, vc3, UIViewController()]
         testController.tabBarItems = [emptyTab, tabBarItem, tabBarItem2, tabBarItem3, emptyTab]
+        testController.initialViewController = vc1
         
         self.view.addSubview(testController.view)
     }

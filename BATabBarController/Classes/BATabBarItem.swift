@@ -68,6 +68,8 @@ public class BATabBarItem: UIButton {
         
     public var empty: Bool = false
     
+    public var presentModally: Bool = false
+    
     //An optional badge to display in the top right corner
     public var badge: BATabBarBadge? {
         willSet {
