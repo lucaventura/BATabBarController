@@ -30,12 +30,14 @@ class ViewController: UIViewController {
         case BATabBarNoText
     }
     
+    var testController: BATabBarController!
+    
     var  demotype = DemoTypes.BATabBarNoText
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        let testController = BATabBarController()
+        testController = BATabBarController()
         var emptyTab, tabBarItem, tabBarItem2, tabBarItem3: BATabBarItem
         
         switch (self.demotype) {
@@ -61,24 +63,47 @@ class ViewController: UIViewController {
         
         let vc1 = UIViewController()
         vc1.view.backgroundColor = .red
-        let vc2 = UIViewController()
-        vc2.view.backgroundColor = .blue
+        
         let vc3 = UIViewController()
         vc3.view.backgroundColor = .green
         
         
         testController.delegate = self
-        testController.viewControllers = [UIViewController(), vc1, vc2, vc3, UIViewController()]
+        
         testController.tabBarItems = [emptyTab, tabBarItem, tabBarItem2, tabBarItem3, emptyTab]
+        testController.viewControllers = [UIViewController(), vc1, getNav(), vc3, UIViewController()]
         testController.initialViewController = vc1
         
         self.view.addSubview(testController.view)
     }
     
+    @objc func close() {
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        //testController.viewControllers[2].dismiss(animated: true, completion: nil)
+//        if let nav = testController.viewControllers[2] as? UINavigationController {
+//            nav.dismiss(animated: true, completion: nil)
+//        }
+    }
+    
+    func getNav() -> UINavigationController {
+        let vc2 = UIViewController()
+        vc2.view.backgroundColor = .blue
+        
+        vc2.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(close))
+        
+        let nav = UINavigationController(rootViewController: vc2)
+        nav.modalPresentationStyle = .overFullScreen
+        
+        
+        return nav
+    }
+    
 }
 
-extension ViewController: BATabBarControllerDelegate {
+extension ViewController: BATabBarControllerDelegate {    
     func tabBarController(_ tabBarController: BATabBarController, didSelect: UIViewController) {
         print("Delegate success!");
     }
+    
+    
 }

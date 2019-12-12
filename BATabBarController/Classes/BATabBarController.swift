@@ -41,6 +41,15 @@ public class BATabBarController:  UIViewController {
             var i = Int(viewControllers.count) - 1
             while i >= 0 {
                 let vc = viewControllers[i]
+                
+                /// TODO: This requires `tabBarItems` to be set BEFORE `viewControllers`
+                /// Really need a struct/class wrapper that has a property for the tabBarItem and viewController that way we don't need two separate arrays
+                if tabBarItems.count - 1 >= i {
+                    if tabBarItems[i].presentModally {
+                        return
+                    }
+                }
+                
                 if let vcView = vc.view, let tabBar = tabBar {
                     self.view.insertSubview(vcView, belowSubview: tabBar)
                     
@@ -176,6 +185,6 @@ extension BATabBarController: BATabBarDelegate {
     }
     
     func presentModally(_ tabBar: BATabBar, didSelectItemAt index: Int) {
-        self.view.window?.rootViewController?.present(viewControllers[index], animated: true, completion: nil)
+        self.view.window?.rootViewController?.show(viewControllers[index], sender: self)
     }
 }
