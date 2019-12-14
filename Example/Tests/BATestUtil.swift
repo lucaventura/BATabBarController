@@ -40,12 +40,12 @@ class BATestUtil {
         return [tabBarItem, tabBarItem2, tabBarItem3]
     }
     
-    static func createViewControllers() -> [UIViewController] {
+    static func createViewControllers() -> [(vc: UIViewController, presentModally: Bool)] {
         
         let vc1 = UIViewController()
         let vc2 = UIViewController()
         let vc3 = UIViewController()
         
-        return [vc1, vc2, vc3]
+        return [(vc1, false), (vc2, false), (vc3, false)]
     }
 }

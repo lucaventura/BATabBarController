@@ -23,6 +23,22 @@
 import UIKit
 import SnapKit
 
+public struct BATabbedItem {
+    var tab: BATabBarItem
+    var viewController: UIViewController
+    var presentModally: Bool
+    
+    public init(tab: BATabBarItem, vc: UIViewController, modal: Bool) {
+        self.tab = tab
+        self.viewController = vc
+        self.presentModally = modal
+    }
+    
+    public static func placeholder() -> BATabbedItem {
+        return BATabbedItem(tab: BATabBarItem.empty(), vc: UIViewController(), modal: false)
+    }
+}
+
 public protocol BATabBarControllerDelegate: AnyObject {
     func tabBarController(_ tabBarController: BATabBarController, didSelect: UIViewController)
 }
@@ -34,23 +50,26 @@ public class BATabBarController:  UIViewController {
     
     //Custom tab bar
     var tabBar: BATabBar?
+    
+    public var items: [BATabbedItem] = [] {
+        didSet {
+            viewControllers = items.map({ ($0.viewController, $0.presentModally) })
+            tabBarItems = items.map({ $0.tab })
+        }
+    }
   
     //View controllers associated with the tabs
-    public var viewControllers: [UIViewController] = []  {
+    public var viewControllers: [(vc: UIViewController, presentModally: Bool)] = []  {
         didSet {
             var i = Int(viewControllers.count) - 1
             while i >= 0 {
-                let vc = viewControllers[i]
+                let item = viewControllers[i]
                 
-                /// TODO: This requires `tabBarItems` to be set BEFORE `viewControllers`
-                /// Really need a struct/class wrapper that has a property for the tabBarItem and viewController that way we don't need two separate arrays
-                if tabBarItems.count - 1 >= i {
-                    if tabBarItems[i].presentModally {
-                        return
-                    }
+                if item.presentModally {
+                    return
                 }
                 
-                if let vcView = vc.view, let tabBar = tabBar {
+                if let vcView = item.vc.view, let tabBar = tabBar {
                     self.view.insertSubview(vcView, belowSubview: tabBar)
                     
                     vcView.translatesAutoresizingMaskIntoConstraints = false
@@ -162,10 +181,18 @@ public class BATabBarController:  UIViewController {
     override public func viewDidAppear(_ animated: Bool) {
         //make sure we always have a selected tab
         if (selectedViewController == nil) {
-            selectedViewController = initialViewController ??  viewControllers[0]
+            selectedViewController = initialViewController ?? viewControllers[0].vc
             if let tabBar = tabBar, let selectedViewController = selectedViewController {
-                let index = (viewControllers as NSArray).index(of: selectedViewController)
-                tabBar.selectedTabItem(index, animated: false)
+                var index: Int?
+                for (i, item) in viewControllers.enumerated() {
+                    if item.vc == selectedViewController {
+                        index = i
+                        break
+                    }
+                }
+                
+                guard let i = index else { return }
+                tabBar.selectedTabItem(i, animated: false)
             }
         }
     }
@@ -173,18 +200,26 @@ public class BATabBarController:  UIViewController {
     public func setSelectedViewController(_ viewController: UIViewController?, animated: Bool) {
         selectedViewController = viewController
         if let viewController = viewController, let tabBar = tabBar {
-            let index = (viewControllers as NSArray).index(of: viewController)
-            tabBar.selectedTabItem(index, animated: animated)
+            var index: Int?
+            for (i, item) in viewControllers.enumerated() {
+                if item.vc == viewController {
+                    index = i
+                    break
+                }
+            }
+            
+            guard let i = index else { return }
+            tabBar.selectedTabItem(i, animated: animated)
         }
     }
 }
 
 extension BATabBarController: BATabBarDelegate {
     func tabBar(_ tabBar: BATabBar, didSelectItemAt index: Int) {
-        selectedViewController = viewControllers[index]
+        selectedViewController = viewControllers[index].vc
     }
     
     func presentModally(_ tabBar: BATabBar, didSelectItemAt index: Int) {
-        self.view.window?.rootViewController?.show(viewControllers[index], sender: self)
+        self.view.window?.rootViewController?.show(viewControllers[index].vc, sender: self)
     }
 }

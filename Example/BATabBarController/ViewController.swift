@@ -69,9 +69,16 @@ class ViewController: UIViewController {
         
         
         testController.delegate = self
+        testController.items = [
+            BATabbedItem.placeholder(),
+            BATabbedItem(tab: tabBarItem, vc: vc1, modal: false),
+            BATabbedItem(tab: tabBarItem2, vc: getNav(), modal: true),
+            BATabbedItem(tab: tabBarItem3, vc: vc3, modal: false),
+            BATabbedItem.placeholder()
+        ]
         
+        //testController.viewControllers = [UIViewController(), vc1, getNav(), vc3, UIViewController()]
         testController.tabBarItems = [emptyTab, tabBarItem, tabBarItem2, tabBarItem3, emptyTab]
-        testController.viewControllers = [UIViewController(), vc1, getNav(), vc3, UIViewController()]
         testController.initialViewController = vc1
         
         self.view.addSubview(testController.view)
@@ -93,7 +100,6 @@ class ViewController: UIViewController {
         
         let nav = UINavigationController(rootViewController: vc2)
         nav.modalPresentationStyle = .overFullScreen
-        
         
         return nav
     }

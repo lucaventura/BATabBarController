@@ -54,7 +54,9 @@ class BATabBarControllerSpecs: QuickSpec {
                     let viewControllers = BATestUtil.createViewControllers()
                     controller.viewControllers = viewControllers
                     
-                    expect(controller.viewControllers).to(equal(viewControllers))
+                    
+                    
+                    expect(controller.viewControllers.map({$0.vc})).to(equal(viewControllers.map({$0.vc})))
                 }
                 
                 it("should have a tabBarItems Property") {
@@ -69,7 +71,7 @@ class BATabBarControllerSpecs: QuickSpec {
                     expect(controller.selectedViewController).to(beNil())
                     controller.viewDidAppear(true)
                     
-                    let firstController = controller.viewControllers[0]
+                    let firstController = controller.viewControllers[0].vc
                     expect(controller.selectedViewController).to(equal(firstController))
                 }
                 
@@ -78,10 +80,10 @@ class BATabBarControllerSpecs: QuickSpec {
                     
                     expect(controller.selectedViewController).to(beNil())
                     
-                    controller.selectedViewController = controller.viewControllers[1]
+                    controller.selectedViewController = controller.viewControllers[1].vc
                     controller.viewDidAppear(true)
                     
-                    let selectedController = controller.viewControllers[1]
+                    let selectedController = controller.viewControllers[1].vc
                     expect(controller.selectedViewController).to(equal(selectedController))
                 }
             }
