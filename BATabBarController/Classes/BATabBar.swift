@@ -193,10 +193,10 @@ class BATabBar: UIView {
         //set default color
         backgroundColor = UIColor.colorWithHex(0x1C2129)
         
-        var borderColor: UIColor = UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0)
+        var borderColor: UIColor = UIColor(red:97/255, green:97/255, blue:97/255, alpha:0.3)
         if #available(iOS 12.0, *) {
             if self.traitCollection.userInterfaceStyle == .dark {
-                borderColor = UIColor(red:0.38, green:0.38, blue:0.38, alpha:1.0)
+                borderColor = UIColor(red:97/255, green:97/255, blue:97/255, alpha:1)
             }
         }
                 

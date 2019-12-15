@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         let vc1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestVC") as! TestViewController
         
         let vc3 = UIViewController()
-        vc3.view.backgroundColor = .green
+        vc3.view.backgroundColor = .white
         
         
         testController.delegate = self
