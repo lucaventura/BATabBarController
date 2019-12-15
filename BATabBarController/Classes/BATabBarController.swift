@@ -65,11 +65,7 @@ public class BATabBarController:  UIViewController {
             while i >= 0 {
                 let item = viewControllers[i]
                 
-                if item.presentModally {
-                    return
-                }
-                
-                if let vcView = item.vc.view, let tabBar = tabBar {
+                if let vcView = item.vc.view, let tabBar = tabBar, !item.presentModally {
                     self.view.insertSubview(vcView, belowSubview: tabBar)
                     
                     vcView.translatesAutoresizingMaskIntoConstraints = false

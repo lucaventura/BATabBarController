@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3590D2BA23A6A71700725F9E /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590D2B923A6A71700725F9E /* TestViewController.swift */; };
 		5AE0CC94FB35E595DA001FC9 /* Pods_BATabBarController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0177890418F13B36B6AD82AD /* Pods_BATabBarController_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 		2BBD0C24994DF140E67DAAEF /* Pods-BATabBarController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BATabBarController_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BATabBarController_Tests/Pods-BATabBarController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		2EB6F3A1F3AEC879A1BA61A0 /* Pods-BATabBarController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BATabBarController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BATabBarController_Example/Pods-BATabBarController_Example.release.xcconfig"; sourceTree = "<group>"; };
 		320084510D65F25641398638 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		3590D2B923A6A71700725F9E /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		539A16FDE1D75C62D2E1625F /* BATabBarController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BATabBarController.podspec; path = ../BATabBarController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5FD25AF997213B4CAF864EAA /* Pods_BATabBarController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BATabBarController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* BATabBarController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BATabBarController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				D0036FEA231DDD1B00BC67C6 /* LaunchScreen.storyboard */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				3590D2B923A6A71700725F9E /* TestViewController.swift */,
 			);
 			name = "Example for BATabBarController";
 			path = BATabBarController;
@@ -373,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				3590D2BA23A6A71700725F9E /* TestViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -61,8 +61,10 @@ class ViewController: UIViewController {
 //        let badge = BATabBarBadge(value:20, badgeColor: .red)
 //        tabBarItem2.badge = badge
         
-        let vc1 = UIViewController()
-        vc1.view.backgroundColor = .red
+        //let vc1 = UIViewController()
+        //vc1.view.backgroundColor = .red
+        
+        let vc1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestVC") as! TestViewController
         
         let vc3 = UIViewController()
         vc3.view.backgroundColor = .green
