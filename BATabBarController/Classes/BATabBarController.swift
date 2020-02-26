@@ -41,6 +41,7 @@ public struct BATabbedItem {
 
 public protocol BATabBarControllerDelegate: AnyObject {
     func tabBarController(_ tabBarController: BATabBarController, didSelect: UIViewController)
+    func currentTabNavPoppedToRoot(tabIndex: Int)
 }
 
 public class BATabBarController:  UIViewController {
@@ -217,5 +218,21 @@ extension BATabBarController: BATabBarDelegate {
     
     func presentModally(_ tabBar: BATabBar, didSelectItemAt index: Int) {
         self.view.window?.rootViewController?.show(viewControllers[index].vc, sender: self)
+    }
+    
+    func currentTabSelectedAgain(_ tabBar: BATabBar, didSelectItemAt index: Int) {
+        if let navVc = selectedViewController as? UINavigationController {
+            navVc.popToRootViewController(animated: true)
+            delegate?.currentTabNavPoppedToRoot(tabIndex: index)
+
+            return
+        }
+        
+        if let navVc = selectedViewController?.navigationController {
+            navVc.popToRootViewController(animated: true)
+            delegate?.currentTabNavPoppedToRoot(tabIndex: index)
+
+            return
+        }
     }
 }

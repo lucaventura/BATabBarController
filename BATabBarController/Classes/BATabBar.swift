@@ -26,6 +26,7 @@ import SnapKit
 protocol BATabBarDelegate: AnyObject {
      func tabBar(_ tabBar: BATabBar, didSelectItemAt index: Int)
      func presentModally(_ tabBar: BATabBar, didSelectItemAt index: Int)
+     func currentTabSelectedAgain(_ tabBar: BATabBar, didSelectItemAt index: Int)
 }
 
 class BATabBar: UIView {
@@ -162,6 +163,9 @@ class BATabBar: UIView {
     @objc func didSelectItem(_ sender: BATabBarItem) {
         let newItem = sender
         if newItem == self.currentTabBarItem {
+            if let delegate = delegate, let index = tabBarItems.firstIndex(of: newItem) {
+                delegate.currentTabSelectedAgain(self, didSelectItemAt: index)
+            }
             return //if it's the same tab, do nothing
         }
         
